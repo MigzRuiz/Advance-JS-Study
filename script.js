@@ -1,26 +1,19 @@
 //FUNCTION CONSTRUCTOR
 
-//PROTOTYPE
-
-var john = {
-    name: 'john',
-    yearOfBirth: 1990,
-    job: 'teacher'
+//OBJECT.CREATE
+var personProto = {
+    calculateAge: function(){
+        console.log(2018 - this.yearOfBirth);
+    }
 };
 
-var Person = function(name, yearOfBirth, job) {
-    this.name = name,
-    this.yearOfBirth =  yearOfBirth,
-    this.job = job
-};
+var john = Object.create(personProto);
+john.name = "John";
+john.yearOfBirth = 1995;
+john.job = "Plumber";
 
-//Prototype Object = because we don't want each instance of Person to have calculateAge function
-Person.prototype.calculateAge = function() {
-    console.log(2018 - this.yearOfBirth)
-}
-
-var john = new Person ('John', 1990, 'teacher');
-var jane = new Person ("Jane", 1995, "Dancer");
-var mark = new Person ("Mark", 1969, "Retired");
-
-john.calculateAge();
+var emily = Object.create(personProto, {
+    name: { value: "Emily" },
+    yearOfBirth: { value: 69 },
+    job: { value: "Artist" }
+});
