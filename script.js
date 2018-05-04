@@ -1,40 +1,24 @@
-//FUNCTION CONSTRUCTOR
+//FIRST CLASS FUNCTIONS
+var years = [1995, 2005, 2003, 2010, 1992];
 
-//PRIMITIVES VS OBJECTS\
-
-//Primitives
-var a = 69;
-var b = a;
-a = 33;
-
-console.log(b); //69
-console.log(a); //33
-
-//Objects
-var obj1 = {
-    name: "jack",
-    age: 91
-};
-
-var obj2 = obj1;
-obj1.age = 32;
-
-console.log(obj1.age);  //30
-console.log(obj2.age);  //30
-
-//Functions
-var age = 22;
-var obj3 = {
-    name: "Miguel",
-    city: "Sacramento"
-};
-
-function change(a, b){
-    a = 23;
-    b.city = "Nigeria";
+function arrayCalc(arr, fn) {
+    var newArr = [];
+    for(var i=0; i < arr.length; i++) {
+        newArr.push(fn(arr[i]));
+    }
+    return newArr;
 }
 
-change(age, obj3);
+function calculateAge(element) {
+    return 2018 - element;
+}
 
-console.log(obj3);
-console.log(age);
+function isFullAge(element) {
+    return (element >= 18);
+}
+
+var ages = arrayCalc(years, calculateAge);
+var ripeAge = arrayCalc(ages, isFullAge);
+
+console.log(ages);
+console.log(ripeAge);
